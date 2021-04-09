@@ -140,7 +140,7 @@ export default class HomeScreen extends Component {
                 }
                 <TouchableOpacity 
                     style = {styles.button}
-                    onPress = {() => {this._buttonClick(); this.props.navigation.navigate('Order')}}>
+                    onPress = {() => {this._buttonClick(); this.props.navigation.navigate('Result')}}>
                     <Text style={styles.buttonText}>Surprise</Text>
                 </TouchableOpacity>
             </View>    

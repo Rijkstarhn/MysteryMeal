@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeScreen from './pages/Home';
+import ResultScreen from './pages/Result';
 import OrderScreen from './pages/Order';
 import ReceiptScreen from './pages/Receipt';
 
@@ -26,6 +27,7 @@ export default function App() {
                     },
             }}>
             <Stack.Screen name = "Mystery Meal" component = {HomeScreen} />
+            <Stack.Screen name = "Result" component = {ResultScreen} />
             <Stack.Screen name = "Order" component = {OrderScreen}/>
             <Stack.Screen name = "Receipt" component = {ReceiptScreen}/>
         </Stack.Navigator>
