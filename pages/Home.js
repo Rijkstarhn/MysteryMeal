@@ -41,14 +41,6 @@ export default class HomeScreen extends Component {
         console.log('price:', this.state.priceRange);
     }
 
-    // jumpToLocation = () => {
-    //     console.log("jumpToGPS");
-    //     navigator.geolocation.getCurrentPosition(() => {
-    //         console.log('jumpToLocation', this.state.region);
-    //         this.mapView.animateToRegion(this.state.region, 2000);
-    //     }, error => alert(JSON.stringify(error)));
-    // }
-
     render() {
         return (
             <View style = {{flex:1}}>
@@ -72,7 +64,7 @@ export default class HomeScreen extends Component {
                     }}
                     onPress={(data, details = null) => {
                         // console.log("****************************************************")
-                        console.log("details", details);
+                        // console.log("details", details);
                         this.setState({
                             inputVisible: true,
                             region :{
