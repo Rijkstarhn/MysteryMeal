@@ -24,6 +24,7 @@ export default class HomeScreen extends Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             },
+            inputVisible:true,
             priceRange: -1.0,
             locationRange: -1.0,
         }
@@ -64,12 +65,16 @@ export default class HomeScreen extends Component {
                     enableHighAccuracyLocation = {true}
                     disableScroll = {true}
                     enablePoweredByContainer = {false}
-                    multiline = {true}
-                    numberOfLines = {3}
+                    textInputProps={{
+                        onFocus: () => this.setState({
+                            inputVisible: false
+                        }),
+                    }}
                     onPress={(data, details = null) => {
                         // console.log("****************************************************")
-                        // console.log("details", details.geometry.location);
+                        console.log("details", details);
                         this.setState({
+                            inputVisible: true,
                             region :{
                                 latitude: details.geometry.location.lat,
                                 longitude: details.geometry.location.lng,
@@ -93,6 +98,7 @@ export default class HomeScreen extends Component {
                     currentLocation={true}
                     currentLocationLabel='Current location'
                 />
+                {this.state.inputVisible && 
                 <View style={[styles.inputStyle, {marginTop: 100}]}>
                     <Picker
                         style={styles.pickerStyle}
@@ -112,6 +118,8 @@ export default class HomeScreen extends Component {
                         <Picker.Item label="10km" value="10.0" />
                     </Picker>
                 </View>
+                }
+                {this.state.inputVisible && 
                 <View style={[styles.inputStyle, {marginTop: 180}]}>
                     <Picker
                         style={styles.pickerStyle}
@@ -129,9 +137,10 @@ export default class HomeScreen extends Component {
                         <Picker.Item label="Try something Luxury" value="4.0" />
                     </Picker>
                 </View>
+                }
                 <TouchableOpacity 
                     style = {styles.button}
-                    onPress = {() => this._buttonClick()}>
+                    onPress = {() => {this._buttonClick(); this.props.navigation.navigate('Order')}}>
                     <Text style={styles.buttonText}>Surprise</Text>
                 </TouchableOpacity>
             </View>    
