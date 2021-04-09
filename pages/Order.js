@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
-export default class Order extends Component {
+export default class OrderScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
