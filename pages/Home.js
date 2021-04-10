@@ -4,8 +4,8 @@ import MapView, { Marker } from 'react-native-maps';
 import {Picker} from '@react-native-picker/picker';
 import { GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 
-const LATITUDE_DELTA = 0.05;
-const LONGITUDE_DELTA = 0.05;
+const LATITUDE_DELTA = 0.001;
+const LONGITUDE_DELTA = 0.001;
 
 export default class HomeScreen extends Component {
 
@@ -48,8 +48,7 @@ export default class HomeScreen extends Component {
                     region={this.state.region}
                     ref = { ref => this.mapView = ref }
                     onRegionChangeComplete={this.onRegionChange}
-                    style = {styles.map}
-                >
+                    style = {styles.map}>
                     <Marker coordinate={{latitude: this.state.selectedRegion.latitude, longitude: this.state.selectedRegion.longitude}} />
                 </MapView>
                 <GooglePlacesAutocomplete
