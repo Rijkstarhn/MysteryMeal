@@ -39,12 +39,12 @@ export default class OrderScreen extends Component {
                     style={styles.map}>
                     <Marker 
                         coordinate={{latitude: this.state.region.latitude, longitude: this.state.region.longitude}}
-                        image={require('../images/gift.png')}/>
+                        image={require('../images/order.png')}/>
                 </MapView>
                 <View style = {[styles.infoCard, {marginTop: 220}]}>
                     <View>
-                        <Caption style = {{fontSize:14, marginLeft:10, marginTop:10}}>Merchant Address</Caption>
-                        <Paragraph style = {{fontSize:18, marginLeft:10, fontWeight: 'bold',marginTop: 10, marginBottom: 10}}>
+                        <Caption style = {styles.captionStyle}>Merchant Address</Caption>
+                        <Paragraph style = {styles.addressStyle}>
                             {this.state.address}
                         </Paragraph>
                         <View style = {styles.infoRow}>
@@ -52,32 +52,32 @@ export default class OrderScreen extends Component {
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.phoneNumber}</Text>
                         </View>
                         <View style = {styles.infoRow}>
-                            <Text style = {{marginTop: 12, marginBottom: 12}}>Time</Text>
+                            <Text style = {styles.infoMarginVertical}>Time</Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.time}</Text>
                         </View>
                         <View style = {styles.infoRow}>
-                            <Text style = {{marginTop: 12, marginBottom: 12}}>Payment Method</Text>
+                            <Text style = {styles.infoMarginVertical}>Payment Method</Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.paymentMethod}</Text>
                         </View>
                     </View>
                 </View>
                 <View style = {[styles.infoCard]}>
                     <View>
-                        <Caption style = {{fontSize:14, marginLeft:10, marginTop:10}}>Fees</Caption>
+                        <Caption style = {styles.captionStyle}>Fees</Caption>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Food Price</Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`$ ${this.state.foodPrice}`}</Text>
                         </View>
                         <View style = {styles.infoRow}>
-                            <Text style = {{marginTop: 12, marginBottom: 12}}>GST/HST & Service Fee</Text>
+                            <Text style = {styles.infoMarginVertical}>GST/HST & Service Fee</Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`$ ${this.state.multiFee}`}</Text>
                         </View>
                         <View style = {styles.infoRow}>
-                            <Text style = {{marginTop: 12, marginBottom: 12}}>Tips</Text>
+                            <Text style = {styles.infoMarginVertical}>Tips</Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`$ ${this.state.tips}`}</Text>
                         </View>
                         <View style = {styles.infoRow}>
-                            <Text style = {{marginTop: 12, marginBottom: 12}}></Text>
+                            <Text style = {styles.infoMarginVertical}></Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`Total  $ ${this.state.total}`}</Text>
                         </View>
                     </View>
@@ -86,7 +86,7 @@ export default class OrderScreen extends Component {
                 <Button 
                     mode="contained" 
                     style = {styles.button}
-                    onPress = {() => {this.props.navigation.navigate('Receipt')}}>
+                    onPress = {() => {this.props.navigation.navigate('Thank You!')}}>
                     {`Place Order         $${this.state.total}`}
                 </Button>
             </View>
@@ -106,6 +106,18 @@ const styles = StyleSheet.create({
         height: 200,
         marginHorizontal:10,
         marginVertical:10,
+    },
+    addressStyle: {
+        fontSize:18, 
+        marginLeft:10, 
+        fontWeight: 'bold',
+        marginTop: 10, 
+        marginBottom: 10
+    },
+    captionStyle: {
+        fontSize:14, 
+        marginLeft:10, 
+        marginTop:10
     },
     infoCard: {
         height: 260, 
