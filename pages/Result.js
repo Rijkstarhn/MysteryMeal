@@ -28,7 +28,7 @@ export default class ResultScreen extends Component {
     }
 
     confirm = () => {
-        this.props.navigation.navigate('Order')
+        this.props.navigation.navigate('Order Confirmation')
     }
 
     render() {

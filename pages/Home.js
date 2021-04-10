@@ -53,6 +53,9 @@ export default class HomeScreen extends Component {
                     <Marker coordinate={{latitude: this.state.selectedRegion.latitude, longitude: this.state.selectedRegion.longitude}} />
                 </MapView>
                 <GooglePlacesAutocomplete
+                    styles={{
+                        container: styles.searchBar
+                    }}
                     placeholder='Search Your Address'
                     enableHighAccuracyLocation = {true}
                     disableScroll = {true}
@@ -91,7 +94,7 @@ export default class HomeScreen extends Component {
                     currentLocationLabel='Current location'
                 />
                 {this.state.inputVisible && 
-                <View style={[styles.inputStyle, {marginTop: 100}]}>
+                <View style={[styles.inputStyle, {marginTop: 180}]}>
                     <Picker
                         style={styles.pickerStyle}
                         selectedValue={this.state.locationRange}
@@ -112,7 +115,7 @@ export default class HomeScreen extends Component {
                 </View>
                 }
                 {this.state.inputVisible && 
-                <View style={[styles.inputStyle, {marginTop: 180}]}>
+                <View style={[styles.inputStyle, {marginTop: 250}]}>
                     <Picker
                         style={styles.pickerStyle}
                         selectedValue={this.state.priceRange}
@@ -146,6 +149,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    searchBar: {
+        width: '94%',
+        marginBottom: 30,
+        marginTop: 60,
+        marginHorizontal:10,
     },
     map: {
         ...StyleSheet.absoluteFillObject,
@@ -191,10 +200,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginLeft: 30,
         width: 300,
-        height: 50,
+        height: 40,
     },
     pickerStyle: {
-        height: 50,
+        height: 40,
         width: 300,
         color: 'black',
     },

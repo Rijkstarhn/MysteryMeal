@@ -28,7 +28,7 @@ export default function App() {
             }}>
             <Stack.Screen name = "Mystery Meal" component = {HomeScreen} />
             <Stack.Screen name = "Result" component = {ResultScreen} />
-            <Stack.Screen name = "Order" component = {OrderScreen}/>
+            <Stack.Screen name = "Order Confirmation" component = {OrderScreen}/>
             <Stack.Screen name = "Receipt" component = {ReceiptScreen}/>
         </Stack.Navigator>
     </NavigationContainer>
@@ -36,10 +36,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
