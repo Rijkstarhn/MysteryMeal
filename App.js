@@ -29,7 +29,7 @@ export default function App() {
             <Stack.Screen name = "Mystery Meal" component = {HomeScreen} />
             <Stack.Screen name = "Result" component = {ResultScreen} />
             <Stack.Screen name = "Order Confirmation" component = {OrderScreen}/>
-            <Stack.Screen name = "Receipt" component = {ReceiptScreen}/>
+            <Stack.Screen name = "Thank You!" component = {ReceiptScreen}/>
         </Stack.Navigator>
     </NavigationContainer>
   );
