@@ -58,7 +58,7 @@ export default class ResultScreen extends Component {
                     <Dialog.Content>
                         <Image style={styles.img} 
                         source={{
-                            uri: "https://scontent.fcxh3-1.fna.fbcdn.net/v/t1.6435-9/40922911_2005368526194385_1989863953169121280_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=973b4a&_nc_ohc=VbYlvpdyhNMAX9139us&_nc_ht=scontent.fcxh3-1.fna&oh=3c784849b7086abed1bb80358e84d134&oe=60949542"
+                            uri: this.props.route.params.result.mealPicUri
                         }}>
                         </Image>
                         <Paragraph style={{fontSize:20, fontWeight:'bold', marginTop:20}}>
