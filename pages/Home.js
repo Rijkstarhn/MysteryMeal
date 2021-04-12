@@ -42,7 +42,7 @@ export default class HomeScreen extends Component {
         console.log('price:', this.state.priceRange);
         // console.log("confrim called!", result);
         findRestaurant().then(result => {
-            console.log("result in home:", result);
+            // console.log("result in home:", result);
             this.props.navigation.navigate('Thank You!', {result});
             this.props.navigation.navigate('Order Confirmation', {result});
             this.props.navigation.navigate('Result', {result});

@@ -21,9 +21,22 @@ export default class OrderScreen extends Component {
             paymentMethod: "Wechat",
             foodPrice: "12.98",
             multiFee: "3.99",
-            tips: "0.00",
-            total: "16.97",
+            tips: "Calculating...",
+            total: "Calculating...",
         }
+    }
+
+    // Use componentDidMount to calculate tips and total because navigation will pass params and then componentDidMount()
+    // will be called.
+        componentDidMount () {
+        this.setState({
+            tips: Math.round((parseFloat(this.props.route.params.result.foodPrice) + 
+                    parseFloat(this.props.route.params.result.multiFee)) * 0.15 * 100) / 100,
+            total: Math.round((parseFloat(this.props.route.params.result.foodPrice) + 
+                    parseFloat(this.props.route.params.result.multiFee) + 
+                    (parseFloat(this.props.route.params.result.foodPrice) + 
+                        parseFloat(this.props.route.params.result.multiFee)) * 0.15) * 100) / 100,
+        })
     }
 
     render() {
@@ -85,13 +98,13 @@ export default class OrderScreen extends Component {
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Tips</Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
-                                {`$ ${this.props.route.params.result.tips}`}
+                                {`$ ${this.state.tips}`}
                             </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}></Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
-                                {`Total  $ ${this.props.route.params.result.total}`}
+                                {`Total  $ ${this.state.total}`}
                             </Text>
                         </View>
                     </View>
@@ -101,7 +114,7 @@ export default class OrderScreen extends Component {
                     mode="contained" 
                     style = {styles.button}
                     onPress = {() => {this.props.navigation.navigate('Thank You!')}}>
-                    {`Place Order         $${this.props.route.params.result.total}`}
+                    {`Place Order         $${this.state.total}`}
                 </Button>
             </View>
         )

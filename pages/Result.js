@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import MapView from 'react-native-maps';
 import { Button, Paragraph, Dialog } from 'react-native-paper';
-import {findRestaurant} from '../service/service';
 
 const LATITUDE_DELTA = 0.05;
 const LONGITUDE_DELTA = 0.05;
@@ -17,10 +16,6 @@ export default class ResultScreen extends Component {
             foodDescription: "This is food description",
         }
     }
-
-    // componentDidMount() {
-    //     console.log('state', this.props.navigation.state);
-    // }
 
     hideDialog = () => {
         this.setState({

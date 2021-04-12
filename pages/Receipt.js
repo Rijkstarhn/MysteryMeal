@@ -27,6 +27,15 @@ export default class ReceiptScreen extends Component {
         }
     }
 
+    componentDidMount() {
+        this.setState(prevState => ({
+            dailArgs: {
+                ...prevState.dailArgs,
+                number: this.props.route.params.result.phoneNumber
+            }
+        }))
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -90,13 +99,6 @@ export default class ReceiptScreen extends Component {
                     mode="contained" 
                     style = {styles.button}
                     onPress = {() => {
-                        console.log("number: ", this.props.route.params.result.phoneNumber)
-                        this.setState(prevState => ({
-                            dailArgs: {
-                                ...prevState.dailArgs,
-                                number: this.props.route.params.result.phoneNumber
-                            }
-                        }))
                         call(this.state.dailArgs).catch(console.error)
                     }}>
                         
