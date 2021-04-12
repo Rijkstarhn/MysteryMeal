@@ -33,7 +33,7 @@ export default class OrderScreen extends Component {
         let multiFee = this.props.route.params.result.multiFee;
         this.setState({
             tips: Math.round((foodPrice + multiFee) * 0.15 * 100) / 100,
-            total: Math.round(foodPrice + multiFee + (foodPrice + multiFee) * 0.15) * 100 / 100,
+            total: Math.round((foodPrice + multiFee + (foodPrice + multiFee) * 0.15) * 100) / 100,
         })
     }
 
