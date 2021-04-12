@@ -32,7 +32,13 @@ export default class ReceiptScreen extends Component {
             dailArgs: {
                 ...prevState.dailArgs,
                 number: this.props.route.params.result.phoneNumber
-            }
+            },
+            region: {
+                latitude: this.props.route.params.result.latitude,
+                longitude: this.props.route.params.result.longitude,
+                latitudeDelta: 0.0008,
+                longitudeDelta: 0.0008,
+            },
         }))
     }
 
@@ -48,7 +54,10 @@ export default class ReceiptScreen extends Component {
                     initialRegion={this.state.region}
                     style={styles.map}>
                     <Marker 
-                        coordinate={{latitude: this.state.region.latitude, longitude: this.state.region.longitude}}
+                        coordinate={{
+                            latitude: this.state.region.latitude, 
+                            longitude: this.state.region.longitude
+                        }}
                         image={require('../images/cook.png')}/>
                 </MapView>
                 <View style={[styles.statusCard, {marginTop: 220}]}>

@@ -4,6 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 import {Picker} from '@react-native-picker/picker';
 import { GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {createRestaurant, findRestaurant} from '../service/service';
+import * as Permission from 'expo-permissions';
 
 const LATITUDE_DELTA = 0.001;
 const LONGITUDE_DELTA = 0.001;
@@ -25,10 +26,46 @@ export default class HomeScreen extends Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             },
+            locationPermission: 'unknown',
+            position: 'unknown',
             inputVisible:true,
             priceRange: -1.0,
             locationRange: -1.0,
         }
+    }
+
+    getLocationPermission = async () => {
+        let {status} = await Permission.askAsync(Permission.LOCATION);
+        if (status !== 'granted') {
+            this.setState({
+                locationPermission: false
+            })
+        } else {
+            this.setState({
+                locationPermission: true
+            })
+        }
+    }
+
+    componentDidMount() {
+        this.getLocationPermission();
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                region :{
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                },
+                selectedRegion: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                },
+                position,
+            })
+        }, error => console.log('getLocation Error:', JSON.stringify(error)))
     }
 
     onRegionChange = (region) => {

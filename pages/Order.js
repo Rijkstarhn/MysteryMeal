@@ -29,11 +29,18 @@ export default class OrderScreen extends Component {
     // Use componentDidMount to calculate tips and total because navigation will pass params and then componentDidMount()
     // will be called.
         componentDidMount () {
+            console.log(this.props.route.params.result)
         let foodPrice = this.props.route.params.result.foodPrice;
         let multiFee = this.props.route.params.result.multiFee;
         this.setState({
             tips: Math.round((foodPrice + multiFee) * 0.15 * 100) / 100,
             total: Math.round((foodPrice + multiFee + (foodPrice + multiFee) * 0.15) * 100) / 100,
+            region: {
+                latitude: this.props.route.params.result.latitude,
+                longitude: this.props.route.params.result.longitude,
+                latitudeDelta: 0.0008,
+                longitudeDelta: 0.0008,
+            },
         })
     }
 
@@ -49,7 +56,10 @@ export default class OrderScreen extends Component {
                     initialRegion={this.state.region}
                     style={styles.map}>
                     <Marker 
-                        coordinate={{latitude: this.state.region.latitude, longitude: this.state.region.longitude}}
+                        coordinate={{
+                            latitude: this.state.region.latitude, 
+                            longitude: this.state.region.longitude,
+                        }}
                         image={require('../images/order.png')}/>
                 </MapView>
                 <View style = {[styles.infoCard, {marginTop: 220}]}>

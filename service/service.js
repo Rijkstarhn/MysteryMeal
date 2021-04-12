@@ -39,6 +39,7 @@ import {db} from '../db';
 export const findRestaurant = async (price) => {
     let lowPrice = -1;
     let highPrice = -1;
+    let rest = "The address is loading...";
     switch (price) {
         case "1.0": lowPrice = 0; highPrice = 12.0; break;
         case "2.0": lowPrice = 12.01; highPrice = 18.0; break;
@@ -48,6 +49,8 @@ export const findRestaurant = async (price) => {
     }
     let obj = await db.ref("/restaurants").orderByChild('foodPrice').startAt(lowPrice).endAt(highPrice).once('value', snapshot => {
         const record = snapshot.val();
-        console.log('record:', record);
+        rest = Object.values(record)[0];
+        // console.log('record:', record);
     })
+    return rest;
 }
