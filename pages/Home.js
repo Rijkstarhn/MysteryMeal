@@ -20,7 +20,7 @@ export default class HomeScreen extends Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             },
-            selectedRegion: {
+            markerRegion: {
                 latitude: 37.78825,
                 longitude: -122.4324,
                 latitudeDelta: 0.0922,
@@ -57,7 +57,7 @@ export default class HomeScreen extends Component {
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 },
-                selectedRegion: {
+                markerRegion: {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                     latitudeDelta: 0.0922,
@@ -75,20 +75,21 @@ export default class HomeScreen extends Component {
     }
 
     _buttonClick = () => {
-        let location = this.state.locationRange;
+        let distance = this.state.locationRange;
         let price = this.state.priceRange;
-        console.log(price);
-        if (location === -1 || price === -1) {
+        if (distance === -1 || price === -1) {
             console.log("Please select your preference!")
             Alert.alert("Please select your preference!")
             return;
         }
-        findRestaurant(price).then(result => {
+        const {latitude, longitude} = this.state.region;
+        let currentLocation = {latitude, longitude};
+        findRestaurant(price, distance, currentLocation).then(result => {
+            // console.log("result:", result);
             this.props.navigation.navigate('Thank You!', {result});
             this.props.navigation.navigate('Order Confirmation', {result});
             this.props.navigation.navigate('Result', {result});
-        });   
-        // createRestaurant();
+        });
     }
 
     render() {
@@ -99,7 +100,7 @@ export default class HomeScreen extends Component {
                     ref = { ref => this.mapView = ref }
                     onRegionChangeComplete={this.onRegionChange}
                     style = {styles.map}>
-                    <Marker coordinate={{latitude: this.state.selectedRegion.latitude, longitude: this.state.selectedRegion.longitude}} />
+                    <Marker coordinate={{latitude: this.state.markerRegion.latitude, longitude: this.state.markerRegion.longitude}} />
                 </MapView>
                 <GooglePlacesAutocomplete
                     styles={{
@@ -125,7 +126,7 @@ export default class HomeScreen extends Component {
                                 latitudeDelta: LATITUDE_DELTA,
                                 longitudeDelta: LONGITUDE_DELTA,
                             },
-                            selectedRegion :{
+                            markerRegion :{
                                 latitude: details.geometry.location.lat,
                                 longitude: details.geometry.location.lng,
                                 latitudeDelta: LATITUDE_DELTA,

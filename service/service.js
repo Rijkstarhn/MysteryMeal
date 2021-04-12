@@ -1,4 +1,5 @@
 import {db} from '../db';
+import { getDistance } from 'geolib';
 
 // export const createRestaurant = () => {
 //     db.ref('/restaurants').push(
@@ -36,9 +37,10 @@ import {db} from '../db';
 //     return rest;
 // }
 
-export const findRestaurant = async (price) => {
+export const findRestaurant = async (price, distance, currentLocation) => {
     let lowPrice = -1;
     let highPrice = -1;
+    let range = -1;
     let rest = "The address is loading...";
     switch (price) {
         case "1.0": lowPrice = 0; highPrice = 12.0; break;
@@ -47,10 +49,30 @@ export const findRestaurant = async (price) => {
         case "4.0": lowPrice = 25.01; highPrice = 99.99; break;
         default : 
     }
-    let obj = await db.ref("/restaurants").orderByChild('foodPrice').startAt(lowPrice).endAt(highPrice).once('value', snapshot => {
-        const record = snapshot.val();
-        rest = Object.values(record)[0];
-        // console.log('record:', record);
+    switch (distance) {
+        case "0.5": range = 500; break;
+        case "2.0": range = 2000; break;
+        case "3.0": range = 3000; break;
+        case "5.0": range = 5000; break;
+        case "10.0": range = 10000; break;
+        default: 
+    }
+    let obj = await db.ref("/restaurants").orderByChild('foodPrice').startAt(lowPrice).endAt(highPrice).
+                once('value', snapshot => {
+                    const record = snapshot.val();
+                    const recordArray = Object.values(record); 
+                    const result = recordArray.filter(element => {
+                        const {latitude, longitude} = element;
+                        const restaurantLocation = {latitude, longitude};
+                        if (getDistance(restaurantLocation, currentLocation) < range) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    })
+                    let index = Math.floor((Math.random() * result.length));
+                    console.log("index", index);
+                    rest = result[index]
     })
     return rest;
 }
