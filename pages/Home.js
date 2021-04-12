@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import {Picker} from '@react-native-picker/picker';
 import { GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
@@ -38,16 +38,20 @@ export default class HomeScreen extends Component {
     }
 
     _buttonClick = () => {
-        console.log('location:', this.state.locationRange);
-        console.log('price:', this.state.priceRange);
-        // console.log("confrim called!", result);
-        findRestaurant().then(result => {
-            // console.log("result in home:", result);
+        let location = this.state.locationRange;
+        let price = this.state.priceRange;
+        console.log(price);
+        if (location === -1 || price === -1) {
+            console.log("Please select your preference!")
+            Alert.alert("Please select your preference!")
+            return;
+        }
+        findRestaurant(price).then(result => {
             this.props.navigation.navigate('Thank You!', {result});
             this.props.navigation.navigate('Order Confirmation', {result});
             this.props.navigation.navigate('Result', {result});
-            // console.log("finished!");
         });   
+        // createRestaurant();
     }
 
     render() {

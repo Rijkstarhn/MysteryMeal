@@ -29,13 +29,11 @@ export default class OrderScreen extends Component {
     // Use componentDidMount to calculate tips and total because navigation will pass params and then componentDidMount()
     // will be called.
         componentDidMount () {
+        let foodPrice = this.props.route.params.result.foodPrice;
+        let multiFee = this.props.route.params.result.multiFee;
         this.setState({
-            tips: Math.round((parseFloat(this.props.route.params.result.foodPrice) + 
-                    parseFloat(this.props.route.params.result.multiFee)) * 0.15 * 100) / 100,
-            total: Math.round((parseFloat(this.props.route.params.result.foodPrice) + 
-                    parseFloat(this.props.route.params.result.multiFee) + 
-                    (parseFloat(this.props.route.params.result.foodPrice) + 
-                        parseFloat(this.props.route.params.result.multiFee)) * 0.15) * 100) / 100,
+            tips: Math.round((foodPrice + multiFee) * 0.15 * 100) / 100,
+            total: Math.round(foodPrice + multiFee + (foodPrice + multiFee) * 0.15) * 100 / 100,
         })
     }
 
