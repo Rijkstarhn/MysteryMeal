@@ -45,19 +45,25 @@ export default class OrderScreen extends Component {
                     <View>
                         <Caption style = {styles.captionStyle}>Merchant Address</Caption>
                         <Paragraph style = {styles.addressStyle}>
-                            {this.state.address}
+                            {this.props.route.params.result.address}
                         </Paragraph>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Phone Number</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.phoneNumber}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.phoneNumber}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Time</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.time}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.time}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Payment Method</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.paymentMethod}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.paymentMethod}
+                            </Text>
                         </View>
                     </View>
                 </View>
@@ -66,19 +72,27 @@ export default class OrderScreen extends Component {
                         <Caption style = {styles.captionStyle}>Fees</Caption>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Food Price</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`$ ${this.state.foodPrice}`}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {`$ ${this.props.route.params.result.foodPrice}`}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>GST/HST & Service Fee</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`$ ${this.state.multiFee}`}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {`$ ${this.props.route.params.result.multiFee}`}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Tips</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`$ ${this.state.tips}`}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {`$ ${this.props.route.params.result.tips}`}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}></Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{`Total  $ ${this.state.total}`}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {`Total  $ ${this.props.route.params.result.total}`}
+                            </Text>
                         </View>
                     </View>
                 </View>
@@ -87,7 +101,7 @@ export default class OrderScreen extends Component {
                     mode="contained" 
                     style = {styles.button}
                     onPress = {() => {this.props.navigation.navigate('Thank You!')}}>
-                    {`Place Order         $${this.state.total}`}
+                    {`Place Order         $${this.props.route.params.result.total}`}
                 </Button>
             </View>
         )

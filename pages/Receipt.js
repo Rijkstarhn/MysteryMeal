@@ -53,23 +53,33 @@ export default class ReceiptScreen extends Component {
                         <Caption style = {styles.captionStyle}>Details</Caption>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Delivery ID</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.deliveryID}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.deliveryID}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Delivery Man</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.deliveryMan}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.deliveryMan}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Untouchable Delivery</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.untouchableDelivery? "Yes" : "No"}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.untouchableDelivery? "Yes" : "No"}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Tableware Needed</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>{this.state.tablewareNeeded? "Yes" : "No"}</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.tablewareNeeded? "Yes" : "No"}
+                            </Text>
                         </View>
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Notes</Text>
-                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>Welcome next time!</Text>
+                            <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
+                                {this.props.route.params.result.note}
+                            </Text>
                         </View>
                     </View>
                 </View>
@@ -79,7 +89,16 @@ export default class ReceiptScreen extends Component {
                     icon = "phone" 
                     mode="contained" 
                     style = {styles.button}
-                    onPress = {() => {call(this.state.dailArgs).catch(console.error)}}>
+                    onPress = {() => {
+                        console.log("number: ", this.props.route.params.result.phoneNumber)
+                        this.setState(prevState => ({
+                            dailArgs: {
+                                ...prevState.dailArgs,
+                                number: this.props.route.params.result.phoneNumber
+                            }
+                        }))
+                        call(this.state.dailArgs).catch(console.error)
+                    }}>
                         
                 </Button>
             </View>

@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import {Picker} from '@react-native-picker/picker';
 import { GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import {createRestaurant, findRestaurant} from '../service/service';
 
 const LATITUDE_DELTA = 0.001;
 const LONGITUDE_DELTA = 0.001;
@@ -39,6 +40,14 @@ export default class HomeScreen extends Component {
     _buttonClick = () => {
         console.log('location:', this.state.locationRange);
         console.log('price:', this.state.priceRange);
+        // console.log("confrim called!", result);
+        findRestaurant().then(result => {
+            console.log("result in home:", result);
+            this.props.navigation.navigate('Thank You!', {result});
+            this.props.navigation.navigate('Order Confirmation', {result});
+            this.props.navigation.navigate('Result', {result});
+            // console.log("finished!");
+        });   
     }
 
     render() {
@@ -134,7 +143,11 @@ export default class HomeScreen extends Component {
                 }
                 <TouchableOpacity 
                     style = {styles.button}
-                    onPress = {() => {this._buttonClick(); this.props.navigation.navigate('Result')}}>
+                    onPress = {() => {
+                        this._buttonClick(); 
+                        // this.props.navigation.navigate('Result');
+                        // createRestaurant();
+                    }}>
                     <Text style={styles.buttonText}>Surprise</Text>
                 </TouchableOpacity>
             </View>    
