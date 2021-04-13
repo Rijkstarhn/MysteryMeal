@@ -93,7 +93,7 @@ export default class HomeScreen extends Component {
             this.props.navigation.navigate('Thank You!', {result});
             this.props.navigation.navigate('Order Confirmation', {result});
             this.props.navigation.navigate('Result', {result});
-            this.props.navigation.navigate('test');
+            // this.props.navigation.navigate('test');
         });
     }
 

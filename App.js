@@ -28,12 +28,10 @@ export default function App() {
                         fontWeight: 'bold',
                     },
             }}>
-            <Stack.Screen name = "test" component = {DataGenerator}/>
             <Stack.Screen name = "Mystery Meal" component = {HomeScreen} />
             <Stack.Screen name = "Result" component = {ResultScreen} />
             <Stack.Screen name = "Order Confirmation" component = {OrderScreen}/>
             <Stack.Screen name = "Thank You!" component = {ReceiptScreen}/>
-            
         </Stack.Navigator>
     </NavigationContainer>
   );
