@@ -60,7 +60,8 @@ export const findRestaurant = async (price, distance, currentLocation) => {
     let obj = await db.ref("/restaurants").orderByChild('foodPrice').startAt(lowPrice).endAt(highPrice).
                 once('value', snapshot => {
                     const record = snapshot.val();
-                    const recordArray = Object.values(record); 
+                    const recordArray = Object.values(record);
+                    // console.log('array', recordArray); 
                     const result = recordArray.filter(element => {
                         const {latitude, longitude} = element;
                         const restaurantLocation = {latitude, longitude};
@@ -70,6 +71,7 @@ export const findRestaurant = async (price, distance, currentLocation) => {
                             return false;
                         }
                     })
+                    // console.log('length',result.length);
                     let index = Math.floor((Math.random() * result.length));
                     console.log("index", index);
                     rest = result[index]

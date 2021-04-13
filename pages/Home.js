@@ -86,6 +86,10 @@ export default class HomeScreen extends Component {
         let currentLocation = {latitude, longitude};
         findRestaurant(price, distance, currentLocation).then(result => {
             // console.log("result:", result);
+            if (result === undefined) {
+                Alert.alert("Sorry, no result! Change preference and try again!");
+                return;
+            }
             this.props.navigation.navigate('Thank You!', {result});
             this.props.navigation.navigate('Order Confirmation', {result});
             this.props.navigation.navigate('Result', {result});
