@@ -1,27 +1,9 @@
 import {db} from '../db';
 import { getDistance } from 'geolib';
 
-// export const createRestaurant = () => {
-//     db.ref('/restaurants').push(
-//         {
-//             address : "1095 Hamilton St, Vancouver, BC V6B 5T4",
-//             deliveryID : "No.9108270116",
-//             deliveryMan : "Rexxay",
-//             foodDescription : "Destination in a heritage warehouse space offering sustainable seafood with innovative touches",
-//             foodPrice : "129.99",
-//             mealName : "Blue Water Cafe",
-//             mealPicUri : "https://lh5.googleusercontent.com/p/AF1QipO7soK0I23MQ9XyiJ4q-j6wyiOHzVXM1B16Zxq9=w195-h120-p-k-no",
-//             multiFee : "18.99",
-//             note : "We hope we served our best!",
-//             orderStatus : "Preparing Your Order",
-//             paymentMethod : "Visa",
-//             phoneNumber : "+16046888078",
-//             tablewareNeeded : true,
-//             time : "4:35 PM",
-//             untouchableDelivery : true,
-//       }
-//     );
-// }
+export const createRestaurant = (restaurantInfo) => {
+    db.ref('/restaurants').push(restaurantInfo);
+}
 
 // export const findRestaurant = async () => {
 //     let rest = "The address is loading...";

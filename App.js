@@ -8,9 +8,11 @@ import HomeScreen from './pages/Home';
 import ResultScreen from './pages/Result';
 import OrderScreen from './pages/Order';
 import ReceiptScreen from './pages/Receipt';
+import DataGenerator from './pages/GenerateDataModule';
 
 const Stack = createStackNavigator();
 import 'react-native-gesture-handler';
+
 
 export default function App() {
   return (
@@ -26,10 +28,12 @@ export default function App() {
                         fontWeight: 'bold',
                     },
             }}>
+            <Stack.Screen name = "test" component = {DataGenerator}/>
             <Stack.Screen name = "Mystery Meal" component = {HomeScreen} />
             <Stack.Screen name = "Result" component = {ResultScreen} />
             <Stack.Screen name = "Order Confirmation" component = {OrderScreen}/>
             <Stack.Screen name = "Thank You!" component = {ReceiptScreen}/>
+            
         </Stack.Navigator>
     </NavigationContainer>
   );
