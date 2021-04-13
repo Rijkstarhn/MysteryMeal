@@ -27,8 +27,9 @@ const MIN_FEERATE = 0.1;
 const precision = 100;
 
 const handleData = (success) => {
+    console.log("Created!")
     // console.log('success', success);
-    const customData = require('../data/response.json').businesses;
+    const customData = require('../data/response (5).json').businesses;
     // console.log("demo:", customData[0]);
     // console.log(customData.length);
     const usefulData = customData.map((item, index) => {

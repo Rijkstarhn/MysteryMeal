@@ -1,9 +1,9 @@
 import {db} from '../db';
 import { getDistance } from 'geolib';
 
-// export const createRestaurant = (restaurantInfo) => {
-//     db.ref('/restaurants').push(restaurantInfo);
-// }
+export const createRestaurant = (restaurantInfo) => {
+    db.ref('/restaurants').push(restaurantInfo);
+}
 
 // export const findRestaurant = async () => {
 //     let rest = "The address is loading...";

@@ -1,10 +1,12 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import {Picker} from '@react-native-picker/picker';
 import { GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {createRestaurant, findRestaurant} from '../service/service';
 import * as Permission from 'expo-permissions';
+// import { Lottery, LotteryItem } from 'react-native-super-lottery';
+import LotteryData from '../data/LotteryData';
 
 const LATITUDE_DELTA = 0.001;
 const LONGITUDE_DELTA = 0.001;
@@ -75,6 +77,8 @@ export default class HomeScreen extends Component {
     }
 
     _buttonClick = () => {
+        // this.lotteryRef.current.start();
+        // this.lotteryRef.current.stop(5, () => {});
         let distance = this.state.locationRange;
         let price = this.state.priceRange;
         if (distance === -1 || price === -1) {
@@ -188,6 +192,12 @@ export default class HomeScreen extends Component {
                     </Picker>
                 </View>
                 }
+                {/* <Lottery
+                    ref={this.lotteryRef}
+                    data={LotteryData}
+                    renderItem={this.renderItem}
+                    defaultLucky={5}
+                /> */}
                 <TouchableOpacity 
                     style = {styles.button}
                     onPress = {() => {
