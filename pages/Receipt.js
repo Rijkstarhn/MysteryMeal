@@ -31,7 +31,7 @@ export default class ReceiptScreen extends Component {
         this.setState(prevState => ({
             dailArgs: {
                 ...prevState.dailArgs,
-                number: this.props.route.params.result.phoneNumber
+                number: this.props.route.params.result.phone
             },
             region: {
                 latitude: this.props.route.params.result.latitude,

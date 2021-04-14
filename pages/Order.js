@@ -71,7 +71,7 @@ export default class OrderScreen extends Component {
                         <View style = {styles.infoRow}>
                             <Text style = {styles.infoMarginVertical}>Phone Number</Text>
                             <Text style = {[styles.infoMarginVertical, {fontWeight:'bold'}]}>
-                                {this.props.route.params.result.phoneNumber}
+                                {this.props.route.params.result.phone}
                             </Text>
                         </View>
                         <View style = {styles.infoRow}>
